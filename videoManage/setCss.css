@@ -1,0 +1,63 @@
+﻿#out {
+    height: 100%;
+    width: 100%;
+}
+
+#bigDiv {
+    border: 1px solid;
+    border-color: gainsboro;
+    border-radius: 7px;
+    height: 100%;
+    width: 500px;
+    margin: 0 auto;
+    padding-top: 13px;
+    background-color: ghostwhite;
+}
+
+.headimg {
+    height: 50px;
+    width: 50px;
+    margin: 0 auto;
+}
+.info {
+    height: 620px;
+    width: 45%;
+    margin: 0 auto;
+    /*margin-top:10px;*/
+}
+
+.txtBox {
+    width: 69%;
+    height: 20px;
+    margin-top: 5px;
+    border-radius: 7px;
+    border-color: gainsboro;
+    border-width: 1px;
+}
+
+.canlendar {
+    margin-top: 8px;
+}
+.canlendarDiv {
+    position: relative;
+    left: 10px;
+}
+.marginTop {
+    margin-top: 8px;
+}
+.saveCancelBtn {
+    width: 45%;
+    height: 33px;
+    border-radius: 7px;
+    border-color:darkgrey;
+    margin: 0 auto;
+    float:left;
+}
+.cancelCancelBtn {
+    width: 45%;
+    height: 33px;
+    border-radius: 7px;
+    border-color: darkgrey;
+    margin: 0 auto;
+    float:right;
+}
