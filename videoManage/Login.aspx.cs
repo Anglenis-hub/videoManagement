@@ -13,8 +13,6 @@ public partial class Login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        string tel = Session["tel"].ToString();
-        txtTel.Text = tel;
     }
 
     protected void LoginBtn_Click(object sender, EventArgs e)
@@ -33,9 +31,8 @@ public partial class Login : System.Web.UI.Page
         dr = cmd.ExecuteReader();
         if (dr.Read())
         {
-            //Session["tel"] = tel;
-            //Session["tel"] = dr["userTel"].ToString();
-            txtTel.Text = Session["tel"].ToString();
+            Session["tel"] = tel;
+            Session["name"] = dr["userName"].ToString(); ;
             Session["password"] = password;
             Response.Redirect("Set.aspx");
         }

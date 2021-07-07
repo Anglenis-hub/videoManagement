@@ -9,22 +9,32 @@ public partial class Set : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (!IsPostBack)
+        {
+            txtName.Text = Session["name"].ToString();
+        }
     }
 
     protected void Calendar1_SelectionChanged(object sender, EventArgs e)
     {
-        // Iterate through the SelectedDates collection and display the
-        // dates selected in the Calendar control.
         foreach (DateTime day in Calendar1.SelectedDates)
         {
-            txtBirth.Text = day.Date.ToShortDateString();
-            this.txtBirth.ForeColor = System.Drawing.Color.Black;
+            if(Calendar1.SelectedDate > DateTime.Now)
+            {
+                txtBirth.Text = "请选择正确的出生日期";
+                this.txtBirth.ForeColor = System.Drawing.Color.Red;
+            }
+            else
+            {
+                txtBirth.Text = day.Date.ToShortDateString();
+                this.txtBirth.ForeColor = System.Drawing.Color.Black;
+            }
         }
     }
 
     protected void saveBtn_Click(object sender, EventArgs e)
     {
+        //Response.Write("在吗");
         //if (Session["tel"].ToString() == "")
         //{
         //    Response.Write("<script>alert('请登录');location.href='Login.aspx';</script>");
@@ -34,35 +44,41 @@ public partial class Set : System.Web.UI.Page
         string birth = txtBirth.Text;
         string favoredType = likedTypeLabel.Text;
 
-        if (txtName.Text == "")
+        if (name is null || sex == "" || birth == "" || CheckBoxList1.SelectedValue == "")
         {
-            this.txtName.ForeColor = System.Drawing.Color.Red;
-            txtName.Text = "请填写昵称";
-        } else
-        {
-            this.txtName.ForeColor = System.Drawing.Color.Black;
+            if (name == null)
+            {
+                txtName.Text = "请输入昵称";
+                this.txtName.ForeColor = System.Drawing.Color.Red;
+            }
+            if (sex == "")
+            {
+                sexLabel.Visible = true;
+                sexLabel.Text = "请选择";
+            }
+            else
+            {
+                sexLabel.Visible = false;
+            }
+            if (birth == "")
+            {
+                this.txtBirth.ForeColor = System.Drawing.Color.Red;
+                txtBirth.Text = "请选择生日";
+            }
+            if (CheckBoxList1.SelectedValue == "")
+            {
+                noSelectionLabel.Visible = true;
+                noSelectionLabel.Text = "请选择";
+            }
         }
-        if (sexRadioButtonList.SelectedValue == "")
+        else
         {
-            sexLabel.Visible = true;
-            sexLabel.Text = "请选择";
-        } else
-        {
-            sexLabel.Visible = false;
+            string sqlUpdate = "update userInfo set userName='" + name + "'," + "userSex= '" + sex + "'," + "userBirth= '" + birth + "'," + "userFavoredType= '" + favoredType + "' where userTel='" + Session["tel"] + "'";
+            dataOperate.execSQL(sqlUpdate);
+            Response.Write("<script>alert('保存成功')</script>");
         }
-        if (txtBirth.Text == "")
-        {
-            this.txtBirth.ForeColor = System.Drawing.Color.Red;
-            txtBirth.Text = "请选择生日";
-        }
-        if (CheckBoxList1.SelectedValue == "")
-        {
-            noSelectionLabel.Visible = true;
-            noSelectionLabel.Text = "请选择";
-        }
+        
 
-        string sqlUpdate = "update userInfo set userName='" + name + "'," + "userSex= '" + sex + "'," + "userBirth= '" + birth + "'," + "userFavoredType= '" + favoredType + "' where userTel='" + Session["tel"] + "'";
-        dataOperate.execSQL(sqlUpdate);
     }
 
     protected void CheckBoxList1_SelectedIndexChanged(object sender, EventArgs e)
@@ -79,11 +95,7 @@ public partial class Set : System.Web.UI.Page
         }
         
     }
-
-    protected void txtName_TextChanged(object sender, EventArgs e)
-    {
-        this.txtName.ForeColor = System.Drawing.Color.Black;
-    }
+    
 
     protected void sexRadioButtonList_SelectedIndexChanged(object sender, EventArgs e)
     {
