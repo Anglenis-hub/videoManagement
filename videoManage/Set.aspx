@@ -16,7 +16,7 @@
                 <div class="headimg"><asp:ImageButton ID="ImageButton1" ImageUrl="~/headImg.jfif" Width="50px" Height="50px" runat="server" /></div>
                 <div class="info">
                     <p style="text-align:center;margin-top:10px;">用户头像</p>  
-                    昵称&nbsp;<asp:TextBox ID="txtName" runat="server" CssClass="txtBox"></asp:TextBox><br /><br />
+                    昵称&nbsp;<asp:TextBox ID="txtName" runat="server" CssClass="txtBox" AutoPostBack="True" OnTextChanged="txtName_TextChanged"></asp:TextBox><br /><br />
                     性别&nbsp;&nbsp;&nbsp;<asp:RadioButtonList ID="sexRadioButtonList" runat="server" RepeatDirection="Horizontal" style="display:inline" AutoPostBack="True" OnSelectedIndexChanged="sexRadioButtonList_SelectedIndexChanged">
                         <asp:ListItem>男</asp:ListItem>
                         <asp:ListItem>女</asp:ListItem>

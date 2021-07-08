@@ -44,12 +44,16 @@ public partial class Set : System.Web.UI.Page
         string birth = txtBirth.Text;
         string favoredType = likedTypeLabel.Text;
 
-        if (name is null || sex == "" || birth == "" || CheckBoxList1.SelectedValue == "")
+        if (name == "" || txtName.Text == "请输入昵称" || sex == "" || birth == "" || txtBirth.Text == "请选择生日" || txtBirth.Text == "请选择正确的出生日期" || CheckBoxList1.SelectedValue == "")
         {
-            if (name == null)
+            if (name == "" || txtName.Text == "请输入昵称")
             {
                 txtName.Text = "请输入昵称";
                 this.txtName.ForeColor = System.Drawing.Color.Red;
+            }
+            else
+            {
+                this.txtName.ForeColor = System.Drawing.Color.Black;
             }
             if (sex == "")
             {
@@ -64,6 +68,11 @@ public partial class Set : System.Web.UI.Page
             {
                 this.txtBirth.ForeColor = System.Drawing.Color.Red;
                 txtBirth.Text = "请选择生日";
+            }
+            if (Calendar1.SelectedDate > DateTime.Now)
+            {
+                this.txtBirth.ForeColor = System.Drawing.Color.Red;
+                txtBirth.Text = "请选择正确的出生日期";
             }
             if (CheckBoxList1.SelectedValue == "")
             {
@@ -100,5 +109,18 @@ public partial class Set : System.Web.UI.Page
     protected void sexRadioButtonList_SelectedIndexChanged(object sender, EventArgs e)
     {
         sexLabel.Visible = false;
+    }
+
+    protected void txtName_TextChanged(object sender, EventArgs e)
+    {
+        if (txtName.Text == "" || txtName.Text == "请输入昵称")
+        {
+            txtName.Text = "请输入昵称";
+            this.txtName.ForeColor = System.Drawing.Color.Red;
+        }
+        else
+        {
+            this.txtName.ForeColor = System.Drawing.Color.Black;
+        }
     }
 }
