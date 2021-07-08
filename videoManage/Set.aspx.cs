@@ -43,6 +43,7 @@ public partial class Set : System.Web.UI.Page
         string sex = sexRadioButtonList.SelectedValue;
         string birth = txtBirth.Text;
         string favoredType = likedTypeLabel.Text;
+        string headImg = headImageBtn.ImageUrl;
 
         if (name == "" || txtName.Text == "请输入昵称" || sex == "" || birth == "" || txtBirth.Text == "请选择生日" || txtBirth.Text == "请选择正确的出生日期" || CheckBoxList1.SelectedValue == "")
         {
@@ -82,7 +83,7 @@ public partial class Set : System.Web.UI.Page
         }
         else
         {
-            string sqlUpdate = "update userInfo set userName='" + name + "'," + "userSex= '" + sex + "'," + "userBirth= '" + birth + "'," + "userFavoredType= '" + favoredType + "' where userTel='" + Session["tel"] + "'";
+            string sqlUpdate = "update userInfo set userName='" + name + "'," + "userSex= '" + sex + "'," + "userBirth= '" + birth + "'," + "userFavoredType= '" + favoredType + "'," + "userHeadImg= '" + headImg + "' where userTel='" + Session["tel"] + "';";
             dataOperate.execSQL(sqlUpdate);
             Response.Write("<script>alert('保存成功')</script>");
         }
@@ -122,5 +123,11 @@ public partial class Set : System.Web.UI.Page
         {
             this.txtName.ForeColor = System.Drawing.Color.Black;
         }
+    }
+
+
+    protected void headImageBtn_Click(object sender, ImageClickEventArgs e)
+    {
+        Response.Redirect("changeHeadImg.aspx");
     }
 }

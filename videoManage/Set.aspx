@@ -13,7 +13,9 @@
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Test %>" SelectCommand="SELECT * FROM [userFavoredType]"></asp:SqlDataSource>
         <div id="out">
             <div id="bigDiv">
-                <div class="headimg"><asp:ImageButton ID="ImageButton1" ImageUrl="~/headImg.jfif" Width="50px" Height="50px" runat="server" /></div>
+                <div class="headimg"><asp:ImageButton ID="headImageBtn" ImageUrl="~/headImg.jfif" Width="50px" Height="50px" runat="server" OnClick="headImageBtn_Click"  />
+                    
+                </div>
                 <div class="info">
                     <p style="text-align:center;margin-top:10px;">用户头像</p>  
                     昵称&nbsp;<asp:TextBox ID="txtName" runat="server" CssClass="txtBox" AutoPostBack="True" OnTextChanged="txtName_TextChanged"></asp:TextBox><br /><br />
