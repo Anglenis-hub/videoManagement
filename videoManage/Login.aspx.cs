@@ -51,6 +51,6 @@ public partial class Login : System.Web.UI.Page
 
     protected void LinkButton1_Click(object sender, EventArgs e)
     {
-        Response.Redirect("Register.aspx");
+        Response.Redirect("videoHomePage.aspx");
     }
 }
